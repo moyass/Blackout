@@ -1,5 +1,5 @@
 const { app, Menu, Tray, BrowserWindow, screen, globalShortcut} = require('electron');
-const aboutWindow = require('about-window');
+const aboutWindow = require('about-window').default;
 const path = require('path');
 
 function createWindow () {
@@ -38,11 +38,14 @@ function createWindow () {
 }
 
 function showAboutWindow(){
-  aboutWindow({
-    icon_path: path.join(__dirname, 'assets', 'icon.png')
+  aboutWindow ({
+    description: "This tool is designed to blackout other non-primary screens. It does not turn them off nor put them to sleep.",
+    icon_path: path.join(__dirname, 'assets', 'icon.png'),
+    copyright: 'Copyright (c) 2020 @Moyass',
+
   });
 }
-let appIcon = null
+
 app.whenReady().then(()  =>  {
   const ret = globalShortcut.register('CommandOrControl+4', () => {
     createWindow();
@@ -51,11 +54,9 @@ app.whenReady().then(()  =>  {
   if (!ret) {
     console.log('registration failed')
   }
+
   // Check whether a shortcut is registered.
   console.log(globalShortcut.isRegistered('CommandOrControl+4'))
-
-
-  
 })
 
 app.on('ready', () => {
@@ -67,6 +68,7 @@ app.on('ready', () => {
     
   })
 
+  let appIcon = null
   appIcon = new Tray(path.join(__dirname, 'assets', 'icon.png'));
   const contextMenu = Menu.buildFromTemplate([
     { label: 'About', click() {showAboutWindow()} },

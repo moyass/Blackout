@@ -1,5 +1,5 @@
 {
-  "name": "BlackScreen",
+  "name": "Blackout",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^11.0.3",
     "about-window": "^1.13.4",
+    "electron": "^11.0.3",
     "electron-winstaller": "^4.0.1",
     "electron-wix-msi": "^3.0.4"
   },
